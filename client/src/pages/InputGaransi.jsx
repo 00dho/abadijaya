@@ -26,7 +26,7 @@ export default function InputGaransi() {
 
   // 1. Ambil Data Pelanggan
   useEffect(() => {
-    fetch('http://localhost:5000/api/pelanggan')
+    fetch('https://abadijaya-production.up.railway.app/api/pelanggan')
       .then(res => res.json())
       .then(data => setListPelanggan(data))
       .catch(err => console.error("Gagal ambil pelanggan"));
@@ -71,7 +71,7 @@ export default function InputGaransi() {
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/garansi/tambah', {
+      const res = await fetch('https://abadijaya-production.up.railway.app/api/garansi/tambah', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

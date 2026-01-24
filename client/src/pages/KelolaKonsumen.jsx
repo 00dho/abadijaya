@@ -16,7 +16,7 @@ export default function KelolaKonsumen() {
 
   const fetchKonsumen = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/pelanggan');
+      const res = await fetch('https://abadijaya-production.up.railway.app/api/pelanggan');
       const data = await res.json();
       setKonsumen(data);
     } catch (err) {
@@ -29,7 +29,7 @@ export default function KelolaKonsumen() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/pelanggan', {
+      const res = await fetch('https://abadijaya-production.up.railway.app/api/pelanggan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

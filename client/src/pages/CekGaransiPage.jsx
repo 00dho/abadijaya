@@ -18,7 +18,7 @@ export default function CekGaransiPage() {
     setResult(null);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/garansi/cek?no_hp=${noHp}`);
+      const response = await fetch(`https://abadijaya-production.up.railway.app/api/garansi/cek?no_hp=${noHp}`);
       const data = await response.json();
 
       if (response.ok) {

@@ -9,7 +9,7 @@ export default function Dashboard() {
 
   // Fungsi Refresh Data
   const fetchData = () => {
-    fetch('http://localhost:5000/api/garansi/all')
+    fetch('https://abadijaya-production.up.railway.app/api/garansi/all')
       .then(res => res.json())
       .then(data => setDataGaransi(data))
       .catch(err => console.error("Gagal ambil data:", err));
@@ -31,7 +31,7 @@ export default function Dashboard() {
     // Konfirmasi dulu biar gak kehapus ga sengaja
     if (window.confirm(`Yakin mau hapus data garansi ${nama} (${mobil})?`)) {
       try {
-        const res = await fetch(`http://localhost:5000/api/garansi/${id}`, {
+        const res = await fetch(`https://abadijaya-production.up.railway.app/api/garansi/${id}`, {
           method: 'DELETE',
         });
         
