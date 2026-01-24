@@ -65,7 +65,7 @@ export default function Products() {
     {
       id: 6,
       name: "Solar Premium",
-      type: "Abbysal Black",
+      type: "Ice Diamonds",
       price: "Rp 2.000.000",
       image: "icediamond.png",
       specs: ["Tingkat Kegelapan: 40%, 60%, 80%", "Tolak Panas 99%", "Awet Hingga 5 Tahun", "Garansi 5 Tahun", "Night Vision: High", "UV 400 Technology"]
