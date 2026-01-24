@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, MessageCircle, ShieldCheck, FileText, ChevronRight } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom'; // PENTING: Import ini
+import { useNavigate, useLocation } from 'react-router-dom';
+import abadijayaLogo from '../assets/abadijaya1.png';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,9 +55,13 @@ export default function Navbar() {
             {/* Logo (Klik balik ke home) */}
             <div 
               onClick={() => handleNavigation('home')}
-              className="flex-shrink-0 font-display font-bold text-xl tracking-wider text-blue-500 cursor-pointer hover:text-blue-400 transition"
+              className="flex-shrink-0 cursor-pointer hover:opacity-80 transition"
             >
-              ABADI JAYA
+              <img 
+                src={abadijayaLogo} 
+                alt="Abadi Jaya Logo" 
+                className="h-10 w-auto"
+              />
             </div>
             
             {/* Burger Menu (Mobile) */}
