@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 import InputGaransi from './pages/InputGaransi';
 import KelolaKonsumen from './pages/KelolaKonsumen';
+import DokumentasiPage from './pages/DokumentasiPage';
 
 function App() {
   const location = useLocation(); // <--- Deteksi kita lagi di halaman mana
@@ -16,6 +17,7 @@ function App() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/cek-garansi" element={<CekGaransiPage />} />
+        <Route path="/dokumentasi" element={<DokumentasiPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/tambah" element={<InputGaransi />} />
