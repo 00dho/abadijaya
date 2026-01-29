@@ -51,22 +51,28 @@ export default function DokumentasiPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gray-50 font-sans"
+    >
       <Navbar />
       
-      <section className="py-16 px-6 bg-white">
+      <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h1 className="font-display text-5xl font-bold text-slate-900 mb-4">
               Dokumentasi & Testimoni
             </h1>
-            <p className="text-xl text-gray-600 mb-2">
+            <p className="text-lg text-gray-600 mb-4">
               Hasil kerja terbaik kami di lapangan
             </p>
             <div className="h-1 w-20 bg-blue-600 rounded-full mx-auto"></div>
@@ -166,7 +172,7 @@ export default function DokumentasiPage() {
       </AnimatePresence>
 
       <Footer />
-    </div>
+    </motion.div>
   );
 }
 

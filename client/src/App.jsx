@@ -9,7 +9,7 @@ import KelolaKonsumen from './pages/KelolaKonsumen';
 import DokumentasiPage from './pages/DokumentasiPage';
 
 function App() {
-  const location = useLocation(); // <--- Deteksi kita lagi di halaman mana
+  const location = useLocation();
 
   return (
     // mode="wait" artinya: tunggu halaman lama hilang, baru munculkan halaman baru
