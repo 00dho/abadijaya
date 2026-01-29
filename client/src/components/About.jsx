@@ -1,5 +1,6 @@
 import { CheckCircle, Award, PenTool, ThumbsUp } from 'lucide-react';
 import { motion } from 'framer-motion'; // <--- Import wajib
+import kacafilm from '../assets/kacafilm.jpeg';
 
 export default function About() {
   return (
@@ -23,7 +24,7 @@ export default function About() {
             </div>
             
             <p className="text-gray-600 mb-8 text-lg leading-relaxed text-justify">
-              Kami menghargai kepercayaan Anda. Misi kami bukan sekadar memasang kaca film, tapi memberikan <strong>ketenangan pikiran</strong> saat Anda berkendara.
+              Kami menghargai kepercayaan Anda. Misi kami bukan sekadar memasang kaca film, tapi memberikan <strong>kenyamanan</strong> saat Anda berkendara.
             </p>
 
             <h3 className="font-bold text-xl text-slate-900 mb-6">Mengapa Harus Kami?</h3>
@@ -68,7 +69,7 @@ export default function About() {
             
             <motion.img 
               whileHover={{ scale: 1.02 }} // Efek zoom dikit pas kursor lewat
-              src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1000&auto=format&fit=crop" 
+              src={kacafilm}
               alt="Proses Pemasangan" 
               className="rounded-xl shadow-2xl w-full object-cover h-[500px]"
             />
