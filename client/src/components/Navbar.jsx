@@ -23,7 +23,11 @@ export default function Navbar() {
     else if (target === 'garansi') {
       // Tombol Cek Garansi (Selalu pindah ke halaman baru)
       navigate('/cek-garansi');
-    } 
+    }
+    else if (target === 'dokumentasi') {
+      // Tombol Dokumentasi (Selalu pindah ke halaman baru)
+      navigate('/dokumentasi');
+    }
     else if (target === 'produk') {
       // Tombol Produk
       if (location.pathname !== '/') {
@@ -76,6 +80,7 @@ export default function Navbar() {
               <div className="ml-10 flex items-baseline space-x-6">
                 <button onClick={() => handleNavigation('home')} className="hover:text-blue-400 transition font-medium">Beranda</button>
                 <button onClick={() => handleNavigation('garansi')} className="hover:text-blue-400 transition font-medium">Cek Garansi</button>
+                <button onClick={() => handleNavigation('dokumentasi')} className="hover:text-blue-400 transition font-medium">Dokumentasi</button>
                 <button onClick={() => handleNavigation('produk')} className="hover:text-blue-400 transition font-medium">Produk</button>
                 
                 <a 
@@ -126,6 +131,14 @@ export default function Navbar() {
             >
               <ShieldCheck size={20} className="text-blue-500" />
               <span className="font-medium">Cek Garansi</span>
+            </button>
+
+             <button 
+              onClick={() => handleNavigation('dokumentasi')}
+              className="w-full flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white transition text-left"
+            >
+              <FileText size={20} className="text-blue-500" />
+              <span className="font-medium">Dokumentasi</span>
             </button>
 
              <button 

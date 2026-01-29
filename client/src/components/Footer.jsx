@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+import doc1 from '../assets/documentation/doc1.jpeg';
+import doc2 from '../assets/documentation/doc2.jpeg';
+import doc3 from '../assets/documentation/doc3.jpeg';
 
 export default function Footer() {
   return (
@@ -10,9 +13,15 @@ export default function Footer() {
               Dokumentasi & Testimoni
             </Link>
             <div className="flex gap-4">
-              <div className="w-16 h-16 bg-gray-800 rounded-lg"></div>
-              <div className="w-16 h-16 bg-gray-800 rounded-lg"></div>
-              <div className="w-16 h-16 bg-gray-800 rounded-lg"></div>
+              <Link to="/dokumentasi" className="overflow-hidden rounded-lg hover:opacity-80 transition">
+                <img src={doc1} alt="Dokumentasi 1" className="w-16 h-16 object-cover" />
+              </Link>
+              <Link to="/dokumentasi" className="overflow-hidden rounded-lg hover:opacity-80 transition">
+                <img src={doc2} alt="Dokumentasi 2" className="w-16 h-16 object-cover" />
+              </Link>
+              <Link to="/dokumentasi" className="overflow-hidden rounded-lg hover:opacity-80 transition">
+                <img src={doc3} alt="Dokumentasi 3" className="w-16 h-16 object-cover" />
+              </Link>
             </div>
             <p className="text-sm mt-2">"Hasil rapi dan pelayanan ramah!" - Customer</p>
           </div>
