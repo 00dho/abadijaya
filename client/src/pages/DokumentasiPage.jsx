@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -16,6 +16,11 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 export default function DokumentasiPage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Scroll ke atas saat page dimuat
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const dokumentasi = [
     { id: 1, src: doc1, title: 'Dokumentasi 1' },
