@@ -10,7 +10,19 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors()); // Izinkan akses dari frontend
+// Configure CORS to allow your frontend domain
+app.use(cors({
+  origin: [
+    'https://www.abadijayafilm.com',
+    'https://abadijayafilm.com',
+    'http://localhost:3000',
+    'http://localhost:5173'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json()); // Agar bisa baca data JSON dari frontend
 
 // Route Test Sederhana
