@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, User, ArrowRight, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Seo from '../components/Seo';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -43,6 +44,9 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 font-sans relative overflow-hidden">
+      {/* noindex: halaman login tidak boleh muncul di hasil pencarian */}
+      <Seo title="Login Admin | Abadi Jaya Film" noindex />
+
       {/* Background Hiasan */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-black via-slate-900 to-blue-900/20 opacity-50 z-0"></div>
 

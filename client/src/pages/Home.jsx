@@ -6,6 +6,8 @@ import Features from '../components/Features';
 import Products from '../components/Products';
 import Warranty from '../components/Warranty';
 import Footer from '../components/Footer';
+import Seo from '../components/Seo';
+import { PAGE_SEO } from '../../site.config';
 
 export default function Home() {
   return (
@@ -16,6 +18,7 @@ export default function Home() {
       transition={{ duration: 0.5 }} // Durasi animasi setengah detik
       className="bg-gray-50 font-sans"
     >
+      <Seo title={PAGE_SEO.home.title} description={PAGE_SEO.home.description} path="/" />
       <Navbar />
       <Hero />
       <About />

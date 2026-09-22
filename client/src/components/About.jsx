@@ -68,9 +68,11 @@ export default function About() {
             <div className="absolute -inset-4 bg-blue-600/10 rounded-2xl transform rotate-3 -z-10"></div>
             
             <motion.img 
-              whileHover={{ scale: 1.02 }} // Efek zoom dikit pas kursor lewat
+              whileHover={{ scale: 1.02 }} 
               src={kacafilm}
-              alt="Proses Pemasangan" 
+              alt="Teknisi Abadi Jaya Film Bekasi sedang memasang kaca film pada kaca mobil"
+              loading="lazy"
+              decoding="async"
               className="rounded-xl shadow-2xl w-full object-cover h-[500px]"
             />
             

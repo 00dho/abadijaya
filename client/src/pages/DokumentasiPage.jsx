@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Seo from '../components/Seo';
+import { PAGE_SEO, SITE } from '../../site.config';
 import doc1 from '../assets/documentation/doc1.jpeg';
 import doc2 from '../assets/documentation/doc2.jpeg';
 import doc3 from '../assets/documentation/doc3.jpeg';
@@ -22,17 +24,16 @@ export default function DokumentasiPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const dokumentasi = [
-    { id: 1, src: doc1, title: 'Dokumentasi 1' },
-    { id: 2, src: doc2, title: 'Dokumentasi 2' },
-    { id: 3, src: doc3, title: 'Dokumentasi 3' },
-    { id: 4, src: doc4, title: 'Dokumentasi 4' },
-    { id: 5, src: doc5, title: 'Dokumentasi 5' },
-    { id: 6, src: doc6, title: 'Dokumentasi 6' },
-    { id: 7, src: doc7, title: 'Dokumentasi 7' },
-    { id: 8, src: doc8, title: 'Dokumentasi 8' },
-    { id: 9, src: doc9, title: 'Dokumentasi 9' },
-  ];
+  const sumberFoto = [doc1, doc2, doc3, doc4, doc5, doc6, doc7, doc8, doc9];
+
+  // Teks "alt" dibuat deskriptif, bukan "Dokumentasi 1". Google Images membaca
+  // teks ini untuk memahami isi foto, jadi ini sumber pengunjung tambahan.
+  const dokumentasi = sumberFoto.map((src, i) => ({
+    id: i + 1,
+    src,
+    title: `Dokumentasi ${i + 1}`,
+    alt: `Hasil pemasangan kaca film mobil oleh ${SITE.name} di ${SITE.address.city} - foto ${i + 1}`,
+  }));
 
   const openModal = (index) => {
     setCurrentIndex(index);
@@ -63,8 +64,13 @@ export default function DokumentasiPage() {
       transition={{ duration: 0.5 }}
       className="min-h-screen bg-gray-50 font-sans"
     >
+      <Seo
+        title={PAGE_SEO.dokumentasi.title}
+        description={PAGE_SEO.dokumentasi.description}
+        path="/dokumentasi"
+      />
       <Navbar />
-      
+
       <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -75,10 +81,10 @@ export default function DokumentasiPage() {
             className="text-center mb-16"
           >
             <h1 className="font-display text-5xl font-bold text-slate-900 mb-4">
-              Dokumentasi & Testimoni
+              Dokumentasi Pemasangan Kaca Film
             </h1>
             <p className="text-lg text-gray-600 mb-4">
-              Hasil kerja terbaik kami di lapangan
+              Hasil kerja nyata Abadi Jaya Film di Bekasi, langsung dari bengkel kami
             </p>
             <div className="h-1 w-20 bg-blue-600 rounded-full mx-auto"></div>
           </motion.div>
@@ -97,7 +103,14 @@ export default function DokumentasiPage() {
                 <div className="relative overflow-hidden rounded-xl shadow-lg h-72">
                   <img
                     src={doc.src}
-                    alt={doc.title}
+                    alt={doc.alt}
+                    /* 3 foto pertama dimuat langsung, sisanya menunggu di-scroll.
+                       Ini menurunkan waktu muat halaman, salah satu faktor
+                       peringkat Google (Core Web Vitals). */
+                    loading={index < 3 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    width="800"
+                    height="600"
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   {/* Overlay Hover */}
@@ -146,7 +159,7 @@ export default function DokumentasiPage() {
               {/* Image */}
               <img
                 src={selectedImage.src}
-                alt={selectedImage.title}
+                alt={selectedImage.alt}
                 className="w-full rounded-lg shadow-2xl"
               />
 
@@ -180,6 +193,3 @@ export default function DokumentasiPage() {
     </motion.div>
   );
 }
-
-// AnimatePresence component untuk exit animation
-import { AnimatePresence } from 'framer-motion';

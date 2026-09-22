@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Save, ArrowLeft, UserCheck, Car, Calendar, FileText, Search, ChevronDown, X } from 'lucide-react';
+import Seo from '../components/Seo';
 
 export default function InputGaransi() {
   const navigate = useNavigate();
@@ -93,6 +94,9 @@ export default function InputGaransi() {
 
   return (
     <div className="min-h-screen bg-slate-100 p-8 font-sans">
+      {/* noindex: halaman admin tidak boleh terindeks Google */}
+      <Seo title="Input Garansi | Abadi Jaya Film" noindex />
+
       <div className="max-w-4xl mx-auto">
         <button onClick={() => navigate('/admin/dashboard')} className="flex items-center gap-2 text-slate-600 mb-6 hover:text-blue-600 font-bold transition">
           <ArrowLeft size={20} /> Kembali ke Dashboard

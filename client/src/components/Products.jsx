@@ -1,5 +1,6 @@
-import { Check, MessageCircle, ChevronRight } from 'lucide-react';
+import { Check, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { SITE } from '../../site.config';
 
 // Helper function untuk load gambar dari assets folder
 const getAssetImage = (filename) => {
@@ -102,16 +103,20 @@ export default function Products() {
           viewport={{ once: true }}
           className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory hide-scrollbar"
         >
-          {products.map((product, index) => (
+          {products.map((product) => (
             <motion.div 
               key={product.id} 
               whileHover={{ y: -10 }} // Efek kartu naik pas di-hover
               className="min-w-[300px] md:min-w-[350px] bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 shadow-xl snap-center flex flex-col"
             >
               <div className="h-48 overflow-hidden relative">
-                <img 
+                <img
                   src={getAssetImage(product.image)}
-                  alt={product.name} 
+                  alt={`Kaca film mobil ${product.name} ${product.type} - ${SITE.name} ${SITE.address.city}`}
+                  loading="lazy"
+                  decoding="async"
+                  width="350"
+                  height="192"
                   className="w-full h-full object-cover hover:scale-110 transition duration-500"
                 />
               </div>

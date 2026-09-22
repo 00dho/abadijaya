@@ -1,0 +1,190 @@
+HASIL ANALISIS PROYEK MAS-RAMA / ABADI JAYA
+Tanggal analisis: 6 Agustus 2026
+
+============================================================
+1. RINGKASAN PROYEK
+============================================================
+
+Proyek ini merupakan website full-stack ringan untuk profil usaha,
+pengelolaan pelanggan, dan pencatatan serta pengecekan garansi kaca film.
+
+Arsitektur utama:
+- Frontend: Single Page Application (SPA)
+- Backend: REST API
+- Database: MySQL
+
+
+============================================================
+2. TEKNOLOGI YANG DIGUNAKAN
+============================================================
+
+Frontend:
+- React 19
+- Vite
+- React Router
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+- jsPDF dan jsPDF AutoTable untuk pembuatan PDF
+
+Backend:
+- Node.js
+- Express 5
+- JSON Web Token (JWT) untuk token login
+- bcrypt untuk hashing password
+- dotenv untuk environment variable
+- CORS
+
+Database:
+- MySQL
+- Driver mysql2
+- Connection pool maksimal 10 koneksi
+
+Tabel yang teridentifikasi dari source code:
+- admins
+- pelanggan
+- garansi
+
+Layanan eksternal lain:
+- Google Fonts
+- Unsplash untuk gambar hero
+- WhatsApp melalui tautan wa.me
+
+
+============================================================
+3. LAYANAN HOSTING YANG DIGUNAKAN
+============================================================
+
+Frontend:
+- Disiapkan untuk Vercel.
+- Bukti: terdapat file client/vercel.json yang mengatur rewrite SPA ke
+  index.html.
+- URL/domain deployment frontend tidak tersimpan di repository, sehingga
+  nama deployment Vercel yang sedang aktif belum dapat dipastikan.
+
+Backend:
+- Ditargetkan atau pernah di-deploy menggunakan Railway.
+- Seluruh request API frontend mengarah ke:
+  https://abadijaya-production.up.railway.app
+- Status aktif deployment tersebut belum dapat dipastikan saat analisis.
+
+Database:
+- Jenis database yang digunakan adalah MySQL.
+- Konfigurasi lokal menggunakan MySQL di localhost.
+- Penyedia database production tidak dapat dipastikan dari repository karena
+  konfigurasi production berada pada environment variable layanan hosting.
+- Database production mungkin berada di Railway atau layanan MySQL eksternal,
+  tetapi tidak ada bukti yang cukup di repository untuk memastikannya.
+
+Penyimpanan source code:
+- GitHub digunakan sebagai remote Git repository.
+
+
+============================================================
+4. REKOMENDASI SPESIFIKASI VPS
+============================================================
+
+Minimum absolut untuk testing atau trafik sangat rendah:
+- 1 vCPU
+- RAM 1 GB
+- Swap 1 GB
+- SSD 20 GB
+- Ubuntu 22.04/24.04
+- Nginx
+- Node.js versi yang kompatibel
+- MySQL 8
+- PM2 atau systemd untuk menjalankan backend
+
+Catatan:
+Konfigurasi 1 GB dapat menjalankan aplikasi, tetapi cukup sempit jika Node.js,
+MySQL, Nginx, dan proses backup berjalan pada VPS yang sama.
+
+Minimum yang direkomendasikan untuk production:
+- 2 vCPU
+- RAM 2 GB
+- Swap 1-2 GB
+- NVMe/SSD 30-40 GB
+- Bandwidth minimal 1 TB per bulan atau port 100 Mbps
+- Nginx sebagai reverse proxy
+- HTTPS/SSL
+- Firewall
+- Backup MySQL harian ke tempat terpisah
+
+Apabila frontend, backend, MySQL, monitoring, dan backup semuanya dijalankan
+pada satu VPS, RAM 4 GB lebih aman dan nyaman.
+
+Arsitektur yang disarankan:
+- Frontend tetap menggunakan Vercel.
+- Backend menggunakan Railway atau VPS.
+- MySQL dapat ditempatkan pada VPS yang sama untuk tahap awal.
+- Gunakan Cloudflare untuk DNS dan perlindungan dasar.
+- Simpan backup database di luar VPS utama.
+
+
+============================================================
+5. TEMUAN KEAMANAN DAN KESIAPAN PRODUCTION
+============================================================
+
+1. Endpoint admin belum dilindungi JWT.
+   Backend membuat token saat login, tetapi endpoint membaca, menambah, dan
+   menghapus data tidak memverifikasi token. Frontend juga belum mengirim
+   token pada request API.
+
+2. Registrasi admin terbuka.
+   Endpoint /api/auth/register dapat dipanggil tanpa autentikasi dan sebaiknya
+   dinonaktifkan setelah admin awal dibuat atau dilindungi role super-admin.
+
+3. Endpoint /test-db berisiko membocorkan data admin.
+   Endpoint tersebut mengambil seluruh kolom tabel admins, termasuk hash
+   password. Endpoint harus dihapus dari production.
+
+4. CORS terbuka untuk semua origin.
+   CORS perlu dibatasi hanya ke domain frontend resmi.
+
+5. Kredensial GitHub ditemukan tersimpan dalam konfigurasi URL remote Git.
+   Personal access token tersebut harus segera di-revoke/rotate, lalu URL
+   remote diganti dengan URL GitHub tanpa kredensial. Nilai token sengaja tidak
+   dicantumkan dalam dokumen ini.
+
+6. URL backend Railway ditulis langsung di banyak file frontend.
+   Sebaiknya gunakan environment variable VITE_API_URL agar alamat backend
+   mudah diganti ketika pindah hosting.
+
+7. Endpoint daftar data belum memakai pagination.
+   Endpoint garansi dan pelanggan mengambil seluruh data sekaligus. Ketika
+   jumlah data membesar, hal ini akan meningkatkan pemakaian RAM, database,
+   dan bandwidth.
+
+8. Belum ditemukan migration atau file schema SQL.
+   Struktur database perlu disimpan sebagai migration/schema agar deployment
+   baru dan pemulihan database dapat dilakukan secara konsisten.
+
+9. Belum tersedia automated test pada backend.
+
+10. Pemeriksaan frontend menghasilkan 18 error ESLint.
+    Sebagian besar berasal dari import atau variabel yang tidak digunakan.
+    Pemeriksaan sintaks file backend utama berhasil.
+
+
+============================================================
+6. KESIMPULAN
+============================================================
+
+Layanan yang teridentifikasi:
+- Frontend hosting: Vercel (berdasarkan konfigurasi repository)
+- Backend hosting: Railway (berdasarkan URL API yang digunakan frontend)
+- Database: MySQL; penyedia hosting database production belum teridentifikasi
+- Source repository: GitHub
+
+Spesifikasi VPS minimum production yang disarankan:
+- 2 vCPU
+- RAM 2 GB
+- SSD/NVMe 30-40 GB
+- Swap 1-2 GB
+
+Untuk seluruh layanan dalam satu VPS dan ruang pertumbuhan yang lebih baik,
+gunakan minimal 2 vCPU, RAM 4 GB, dan SSD/NVMe 40 GB.
+
+Sebelum deployment production, prioritas utama adalah memperbaiki autentikasi
+endpoint, menutup registrasi admin, menghapus endpoint /test-db, membatasi
+CORS, merotasi token GitHub, dan memindahkan URL API ke environment variable.

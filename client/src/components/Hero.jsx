@@ -14,8 +14,11 @@ export default function Hero() {
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }} // Efek bernafas
-          src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1920&auto=format&fit=crop" 
-          alt="Luxury Car Background" 
+          src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1920&auto=format&fit=crop"
+          alt="Mobil dengan kaca film gelap terpasang rapi oleh Abadi Jaya Film Bekasi"
+          /* Gambar terbesar di layar pertama. fetchPriority="high" menyuruh
+             browser memuatnya lebih dulu, memperbaiki skor kecepatan Google. */
+          fetchPriority="high"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-slate-900"></div>
@@ -31,7 +34,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <span className="inline-block py-1 px-3 rounded-full bg-blue-600/20 text-blue-300 text-sm font-bold tracking-wider mb-6 border border-blue-500/30 backdrop-blur-md">
-            AUTO FILM SPECIALIST
+            SPESIALIS KACA FILM MOBIL BEKASI
           </span>
         </motion.div>
         
@@ -42,7 +45,9 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }} // Delay biar gantian munculnya
           className="font-display text-4xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-2xl"
         >
-          Kenyamanan & Perlindungan <br/>
+          {/* H1 adalah judul terpenting bagi Google. Kata kunci utama
+              ("kaca film mobil Bekasi") sengaja ditaruh di sini. */}
+          Kaca Film Mobil Bekasi <br/>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-white">
             Kelas Premium
           </span>
@@ -55,7 +60,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.6 }}
           className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
         >
-          Selamat datang di <strong>Abadi Jaya Film</strong>. Pusat pemasangan kaca film original dengan standar pengerjaan detil untuk mobil kesayangan Anda.
+          <strong>Abadi Jaya Film</strong> adalah spesialis pemasangan kaca film mobil di Bekasi. Produk 100% original, pengerjaan rapi dan detail, dengan garansi resmi hingga 5 tahun.
         </motion.p>
         
         {/* Tombol: Pop-up */}

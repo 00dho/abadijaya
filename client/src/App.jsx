@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import InputGaransi from './pages/InputGaransi';
 import KelolaKonsumen from './pages/KelolaKonsumen';
 import DokumentasiPage from './pages/DokumentasiPage';
+import NotFound from './pages/NotFound';
 
 function App() {
   const location = useLocation();
@@ -22,6 +23,9 @@ function App() {
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/tambah" element={<InputGaransi />} />
         <Route path="/admin/konsumen" element={<KelolaKonsumen />} />
+
+        {/* Alamat yang tidak dikenal -> halaman 404, bukan halaman kosong */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
   );

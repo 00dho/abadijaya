@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, MapPin, Phone, Save, ArrowLeft, Search } from 'lucide-react';
+import Seo from '../components/Seo';
 
 export default function KelolaKonsumen() {
   const navigate = useNavigate();
@@ -58,6 +59,9 @@ export default function KelolaKonsumen() {
 
   return (
     <div className="min-h-screen bg-slate-100 p-6 font-sans">
+      {/* noindex: data konsumen tidak boleh terindeks Google */}
+      <Seo title="Kelola Konsumen | Abadi Jaya Film" noindex />
+
       <div className="max-w-6xl mx-auto">
         
         {/* Tombol Kembali */}

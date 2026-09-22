@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WarrantyResult from '../components/WarrantyResult'; // <--- Import Komponen Baru
+import Seo from '../components/Seo';
+import { PAGE_SEO } from '../../site.config';
 import { Search, AlertCircle } from 'lucide-react';
 
 export default function CekGaransiPage() {
@@ -41,8 +43,13 @@ export default function CekGaransiPage() {
       transition={{ duration: 0.4 }}
       className="flex flex-col min-h-screen bg-gray-50 font-sans"
     >
+      <Seo
+        title={PAGE_SEO.cekGaransi.title}
+        description={PAGE_SEO.cekGaransi.description}
+        path="/cek-garansi"
+      />
       <Navbar />
-      
+
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-24 bg-slate-900 relative min-h-[80vh]">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-black via-slate-900 to-blue-900/20 opacity-50 z-0"></div>
         
